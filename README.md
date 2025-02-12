@@ -15,11 +15,11 @@ To build and run GPU-accelerated Docker containers, please install the [NVIDIA C
 ![alt text](docs/architecture.png)
 
 There are three main components that will run in an internal Docker network with no other network connections, including the Internet.
-- [[SERVICE] Victim Models](#service-victim-models-servicessample_vllm)
-- [[SERVICE] Client Container](#service-client-container-servicessample_client)
-- [[SUBMISSION] Participant's API Server Container](#submission-participants-defense-models)
+- [SERVICE] Victim Models
+- [SERVICE] Client Container
+- [SUBMISSION] Participant's API Server Container
 
-Each submitted Docker container from the participants will function as a `Proxy ` server in between a `Client` and a `Victim Model` server (hosting `lmsys/vicuna-7b-v1.5` and two other undisclosed models). All communication between `Client` to `Proxy` server to `Victim Model` server will done via a RESTful API.
+Each submitted Docker container from the participants will function as a `Proxy` server in between a `Client` and a `Victim Model` server (hosting `lmsys/vicuna-7b-v1.5` and two other undisclosed models). All communication between `Client` to `Proxy` server to `Victim Model` server will done via a RESTful API.
 
 The submitted Docker container must be self-contained with respect to any resources it needs. There will be no access to any external resources (be it network-based or otherwise).
 
@@ -73,7 +73,7 @@ Your solution must use the aforementioned REST API in the section for `Victim Mo
 
 AISG's `Client` will call your `Proxy` server with the prompt to each `Victim Model`. **These prompts are not released to participants**
 
-Further details on how this is done for a Python-based Docker solution can be found in [Usage of sample submission](#example-usage-of-services-and-submissionsubmission_template) and [Creating your own submission](#example-creating-your-own-submission).
+Further details on how this is done for a Python-based Docker solution can be found in "Usage of sample submission" and "Creating your own submission".
 
 #### Hardware/Software Specifications
 
@@ -96,7 +96,7 @@ The general software specification
 #### Docker Container Details
 
 ##### Max Docker Container Size
-Your solution upon saving [using docker save](#compress-your-docker-container-to-targz-format-using-docker-save) must not exceed the maximum file size of 30 GiB.
+Your solution upon saving using `docker save` must not exceed the maximum file size of 30 GiB.
 
 
 ##### Submitted Docker Container Isolation
@@ -133,7 +133,7 @@ The defense model's response would need to adhere to the JSON format described
 
 Your solution must use `stderr` for the writing of any logs to assist you in determining any programming errors within your solution. Logs have an implied file size limit to prevent abuse. Failure to keep within this limit through excessive logging will result in an error in your solution.
 
-Further details on how this is done for a Python-based Docker solution can be found in [Usage of sample submission](#usage-of-sample-submission) and [Creating your own submission](#creating-your-own-submission).
+Further details on how this is done for a Python-based Docker solution can be found in "Usage of sample submission" and "Creating your own submission".
 
 **_Non-compliance may result in premature termination of your solution with a Resource Limit Exceeded error._**
 
@@ -162,7 +162,7 @@ git clone https://github.com/AISG-Technology-Team/GCSS-Track-2-Submission-Guide
 ```
 
 ### 2. Download the Victim Model Files
-Before trying out the [sample submission](#usage-of-sample-submission) or [creating your own submission](#creating-your-own-submission), you will need to:
+Before trying out the sample submission or creating your own submission, you will need to:
 ```
 cd services/sample_vllm
 python3 -m venv .venv
@@ -224,7 +224,7 @@ Then run `./run.sh`
 
 Check whether there's no error and that the client outputs the following file `stdout.json` with no issues. You can check for logs/errors in the respective `stderr` files for the `Victim Model` and your submission. The client's error can also be obtained from the `stderr_client.log` file.
 
-###  Save your submission into the sample submission (`sample_submission`) directory
+### Save your submission into the sample submission (`sample_submission`) directory
 Finally, if everything works as intended. Run the following command and save your Docker image for submission.
 
 ```
